@@ -20,17 +20,18 @@ class productcontroller extends controller
     function product_add()
     {
         $msg = "";
-        if (post("")) {
+        if (isset($_POST["submit"])) {
+            unset($_POST["submit"]);
             if (isset($_FILES['hinh'], $_FILES['hinhchitiet'])) {
-                $path = $this->upload($_FILES['hinh'], "./public/image", [".jpg", ".png", ".gif"], 2,  $msg);
-                $pathdetail = $this->upload($_FILES['hinhchitiet'], "./public/image", [".jpg", ".png", ".gif"], 2, $msg);
+                $path = $this->upload($_FILES['hinh'], "public/images", [".jpg", ".png", ".gif"], 2,  $msg);
+                $pathdetail = $this->upload($_FILES['hinhchitiet'], "public/images", [".jpg", ".png", ".gif"], 2, $msg);
                 if ($path && $pathdetail) { // path khác rỗng khác null khác false tức là phải có $path
                     $_POST['hinh'] = $path;
                     $_POST['hinhchitiet'] = $pathdetail;
                     $_POST['trangthai'] = $_POST['trangthai'];
                     if ($this->check_type($_POST, $msg)) {
                         $this->model->add($_POST);
-                        $this->index();
+                        chuyentrang(url("product", "index"));
                     }
                 }
             }
@@ -50,16 +51,32 @@ class productcontroller extends controller
             $product = $this->model->product_get_row(get("ma"));
             $product->trangthai = 0;
             $this->model->repair($product, get("ma"));
-            $this->index();
+            chuyentrang(url("product", "index"));
         }
     }
 
     function product_repair()
     {
-        // if (post("")) {
-        //     if
-        // }
         $msg = "";
+        if (isset($_POST["submit"])) {
+            unset($_POST["submit"]);
+            if ($_FILES["hinh"]["error"] == 0 && $_FILES["hinhchitiet"]["error"] == 0) {
+                $this->model->product_remove_img(get("ma"));
+                $path = $this->upload($_FILES["hinh"], "./public/images", [".jpg", ".png", ".gif"], 2, $msg);
+                $pathdetail = $this->upload($_FILES["hinhchitiet"], "./public/images", [".jpg", ".png", ".gif"], 2, $msg);
+                $_POST["hinh"] = $path;
+                $_POST["hinhchitiet"] = $pathdetail;
+                $this->model->repair(post(""), get("ma"));
+                chuyentrang(url("product", "index"));
+            } else {
+                $product = $this->model->product_get_row(get("ma"));
+                $_POST["hinh"] = $product->hinh;
+                $_POST["hinhchitiet"] = $product->hinhchitiet;
+                $this->model->repair(post(""), get("ma"));
+                chuyentrang(url("product", "index")); // header về đâu
+                // $this->index(); -> chỉ là load cái view ra thui vẫn giữ cái mã ở trên thanh url 
+            }
+        }
 
         $view = "./views/product/product-add.php";
         $this->render($view, [

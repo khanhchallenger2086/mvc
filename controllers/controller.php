@@ -49,19 +49,11 @@ class controller
         foreach ($array as $key => $value) {
             if ($value == "") {
                 $msg = "Bạn nhập thiếu thông tin";
-            }
-        }
-
-        if ($msg == "") {
-            if (!is_numeric($array['dongia'] && $array['mahienthi'] && $array['soluong'])) {
-                $msg = "bạn nhập không đúng kiểu";
                 return false;
-            } else {
-                return true;
+                break;
             }
-        } else {
-            return false;
         }
+        return true;
     }
 }
 
