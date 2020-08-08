@@ -45,15 +45,15 @@ class controller
     }
 
     function check_type($array, &$msg)
-    {
+    {   
+        $result = true;
         foreach ($array as $key => $value) {
             if ($value == "") {
                 $msg = "Bạn nhập thiếu thông tin";
-                return false;
-                break;
+                $result = false;
             }
         }
-        return true;
+        return $result;
     }
 }
 

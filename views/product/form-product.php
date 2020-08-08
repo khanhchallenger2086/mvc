@@ -12,8 +12,8 @@
                 <div class="item form-group">
                     <div class="col-md-6 col-sm-6 ">
                         Mã:
-                        <input type="number" name='mahienthi' value="<?= $list ? get("ma") : "" ?>"
-                            placeholder='Mã hiển thị' class="form-control ">
+                        <input type="number" name='mahienthi' value="<?= $list ? $list->mahienthi : "" ?>"
+                            placeholder='Mã hiển thị'  class="form-control ">
                     </div>
                     <div class="col-md-6 col-sm-6 ">
                         Danh mục:
@@ -102,8 +102,8 @@
                 <div class="item form-group">
                     <div class="col-md-6 col-sm-6 ">
                         Chi tiết mô tả
-                        <textarea name="chitiet" cols="30" rows="5" placeholder='Chi tiết'
-                            class="form-control"></textarea>
+                        <textarea name="chitiet"  cols="30" rows="5" placeholder='Chi tiết'
+                            class="form-control"><?= $list ? $list->chitiet : "" ?></textarea>
                     </div>
                     <div class="col-md-6 col-sm-6 ">
                         Trạng thái:
@@ -116,7 +116,7 @@
                 <div class="ln_solid"></div>
                 <div class="item form-group">
                     <div class="offset-md-4 col-md-6 col-sm-6 ">
-                        <a class="btn btn-primary" href="<?= url("product", "index") ?>">Come back</a>
+                        <a class="btn btn-primary" href="<?= url("products", "index") ?>">Come back</a>
                         <button name="submit" class="btn btn-success">Hoàn tất</button>
                     </div>
                 </div>

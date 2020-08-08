@@ -31,4 +31,28 @@ class supliercontroller extends controller
             "msg" => $msg
         ]);
     }
+
+    // function suplier_remove()
+    // {
+    //     if (isset($_GET["ma"]) && get("ma")) {
+    //         $this->model->remove(get("ma"));
+    //         chuyentrang(url("product", "index"));
+    //     }
+    // }
+    
+    // function suplier_show() {
+    //     if (isset($_GET['ma']) && get('ma')) {
+    //         $product = $this->model->product_get_row(get('ma'));
+    //         $this->model->show($product,get('ma'));
+    //         chuyentrang(url('product','index'));
+    //     } 
+    // }
+
+    // function suplier_hidden() {
+    //     if (isset($_GET['ma']) && get('ma')) {
+    //         $product = $this->model->product_get_row(get('ma'));
+    //         $this->model->hidden($product,get('ma'));
+    //         chuyentrang(url('product','index'));
+    //     } 
+    // }
 }

@@ -28,7 +28,7 @@
                         <th>Địa chỉ</th>
                         <th>Email</th>
                         <th>Số điện thoại</th>
-                        <th>Trạng thái</th>
+                        <th class="text-center">Trạng thái</th>
                         <th class='text-center'>Tùy chỉnh</th>
                     </tr>
                 </thead>
@@ -42,7 +42,18 @@
                         <td><?= $item->diachi ?></td>
                         <td><?= $item->email ?></td>
                         <td><?= $item->sdt ?></td>
-                        <td><?= $item->trangthai == 1 ? "<span class='badge badge-success'>Hiện</span>"  : "<span class='badge badge-secondary'>Ẩn</span>" ?>
+                        <td class="text-center">
+                            <?php
+                                if ($item->trangthai == 1) {
+                                ?>
+                            <a style="font-size: 20px;" href="<?= url("suplier", "suplier_hidden", ["ma" => $item->ma]) ?>" class="badge badge-success"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+                            <?php
+                                } else {
+                                ?>
+                            <a style="font-size: 20px;" href="<?= url("suplier", "suplier_show", ["ma" => $item->ma]) ?>" class="badge badge-secondary"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
+                            <?php
+                                }
+                                ?>
                         </td>
                         <td class='text-right'>
                             <!-- <a class='btn btn-primary btn-sm' href="">Xem</a> -->

@@ -3,23 +3,11 @@ class productmodel extends general
 {
     var $table = 'products';
 
-    /* Hàm lấy ra sản phẩm nhiều dòng */
-    function product_get_rows()
-    {
-        return $this->setquery('select * FROM `' . $this->table . '`')->loadrows();
-    }
-
-    /* Hàm lấy ra sản phẩm 1 dòng */
-    function product_get_row($ma)
-    {
-        return $this->setquery('select * FROM `' . $this->table . '` WHERE ma = ?')->loadrow([$ma]);
-    }
-
     /* Hàm xóa ảnh của sản phẩm */
     function product_remove_img($ma)
     {
-        unlink($this->product_get_row($ma)->hinh);
-        unlink($this->product_get_row($ma)->hinhchitiet);
+        unlink($this->get_row($this->table,$ma)->hinh);
+        unlink($this->get_row($this->table,$ma)->hinhchitiet);
     }
 
     function show_category()
