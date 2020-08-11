@@ -12,16 +12,16 @@
                 <div class="item form-group">
                     <div class=" col-md-6  col-sm-6 ">
                         Tên:
-                        <input type="text" name='ten' value="<?= $list ? get("ma") : "" ?>" placeholder='Tên'
+                        <input type="text" name='ten' value="<?= $list ? $list->ten : "" ?>" placeholder='Tên'
                             class="form-control "><br>
                         Địa chỉ:
-                        <input type="text" name='diachi' value="<?= $list ? get("ma") : "" ?>" placeholder='Địa chỉ'
+                        <input type="text" name='diachi' value="<?= $list ? $list->diachi : "" ?>" placeholder='Địa chỉ'
                             class="form-control "><br>
                         Email:
-                        <input type="text" name='email' value="<?= $list ? get("ma") : "" ?>" placeholder='Email'
+                        <input type="text" name='email' value="<?= $list ? $list->email : "" ?>" placeholder='Email'
                             class="form-control "><br>
                         Số Điện Thoại :
-                        <input type="number" name='sdt' value="<?= $list ? get("ma") : "" ?>"
+                        <input type="number" name='sdt' value="<?= $list ? $list->sdt : "" ?>"
                             placeholder='Số Điện Thoại' class="form-control "><br>
                     </div>
                 </div>

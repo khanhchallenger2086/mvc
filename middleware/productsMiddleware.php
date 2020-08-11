@@ -35,9 +35,9 @@
                         $post["hinhchitiet"] = $pathdetail;
                         return $post;
                         } else {
-                        $product = $this->model->get_row($this->table,$ma); 
-                        $post["hinh"] = $product->hinh;
-                        $post["hinhchitiet"] = $product->hinhchitiet;
+                        // $product = $this->model->get_row($this->table,$ma); 
+                        // $post["hinh"] = $product->hinh;
+                        // $post["hinhchitiet"] = $product->hinhchitiet;
                         return $post;
                     }
                 } 

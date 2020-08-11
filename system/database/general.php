@@ -1,7 +1,7 @@
 <?php
 class general extends database
 {
-    function add($post)
+    function add($table,$post)
     {
         $colum = $ask = '';
         $value = [];
@@ -11,13 +11,14 @@ class general extends database
             $ask .= '?,';
             $value[] = trim($v); // value không cần mà vì là thêm
         }
-
+      
         $colum = rtrim($colum, ',');
         $ask = rtrim($ask, ',');
-        return $this->setquery('insert into `' . $this->table . '` (' . $colum . ') VALUES (' . $ask . ')')->save($value);
+       
+        return $this->setquery('insert into `' . $table . '` (' . $colum . ') VALUES (' . $ask . ')')->save($value);
     }
 
-    function repair($post, $ma)
+    function repair($table,$post, $ma)
     {
         $change = '';
         $value = [];
@@ -29,7 +30,7 @@ class general extends database
         $change = rtrim($change, ',');
         $value[] = $ma;
         // return $this->setquery('update `' . $this->table . '` SET ' . $change . 'WHERE `' . $this->table . '`.`ma` =?')->save($value); // trên ko dc
-        return $this->setquery('update `' . $this->table . '` SET ' . $change . ' WHERE `' . $this->table . '`.`ma` =?')->save($value);  // dưới dc
+        return $this->setquery('update `' . $table . '` SET ' . $change . ' WHERE `' . $table . '`.`ma` =?')->save($value);  // dưới dc
     }
 
     /* Hàm lấy ra sản phẩm nhiều dòng */
@@ -47,14 +48,14 @@ class general extends database
     function show($table,$ma) {
         $list = $this->get_row($table,$ma);
         $list->trangthai = 1;
-        $this->repair($list,$ma);
+        $this->repair($table,$list,$ma);
         chuyentrang(url($table,'index'));
     }
 
     function hidden($table,$ma) {
         $list = $this->get_row($table,$ma);
         $list->trangthai = 0;
-        $this->repair($list,$ma);
+        $this->repair($table,$list,$ma);
         chuyentrang(url($table,'index'));
     }
 

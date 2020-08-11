@@ -107,7 +107,7 @@
                     </div>
                     <div class="col-md-6 col-sm-6 ">
                         Trạng thái:
-                        Hiển Thị: <input type='radio' value="1" <?= ($list->trangthai == "1") ? "checked" : "" ?>
+                        Hiển Thị: <input type='radio' value="1" <?= ($list->trangthai == "1")  ? "checked" : "" ?>
                             name='trangthai'>
                         Ẩn: <input type='radio' value="0" <?= ($list->trangthai == "0") ? "checked" : "" ?>
                             name='trangthai'>

@@ -2,6 +2,7 @@
 class supliercontroller extends controller
 {
     public $model;
+    public $table = 'suplier';
     function __construct()
     {
         parent::__construct(); // viết dư , khi kế thừa th cha thì construct của th cha cũng chạy cũng chạy trong class này
@@ -22,7 +23,8 @@ class supliercontroller extends controller
         if (isset($_POST["submit"])) {
             unset($_POST["submit"]);
             if ($this->check_type($_POST, $msg)) {
-                echo "Thành công";
+                $this->model->add($this->table,$_POST);
+                chuyentrang(url('suplier','index'));
             }
         }
 
@@ -32,27 +34,40 @@ class supliercontroller extends controller
         ]);
     }
 
-    // function suplier_remove()
-    // {
-    //     if (isset($_GET["ma"]) && get("ma")) {
-    //         $this->model->remove(get("ma"));
-    //         chuyentrang(url("product", "index"));
-    //     }
-    // }
-    
-    // function suplier_show() {
-    //     if (isset($_GET['ma']) && get('ma')) {
-    //         $product = $this->model->product_get_row(get('ma'));
-    //         $this->model->show($product,get('ma'));
-    //         chuyentrang(url('product','index'));
-    //     } 
-    // }
+    function suplier_repair()
+    {
+        $msg = "";
+        if (isset($_POST["submit"])) {
+            unset($_POST["submit"]);
+            if (isset($_GET['ma']) && get('ma')) {
+            $this->model->repair($this->table,$_POST,get('ma'));
+            chuyentrang(url('suplier','index'));
+            }
+        }
 
-    // function suplier_hidden() {
-    //     if (isset($_GET['ma']) && get('ma')) {
-    //         $product = $this->model->product_get_row(get('ma'));
-    //         $this->model->hidden($product,get('ma'));
-    //         chuyentrang(url('product','index'));
-    //     } 
-    // }
+        $view = "./views/product/form-suplier.php";
+        $this->render($view, [
+            "msg" => $msg,
+            'list' => $this->model->get_row($this->table,get('ma'))
+        ]);
+    }
+
+    function suplier_remove()
+    {
+        if (isset($_GET["ma"]) && get("ma")) {
+            $this->model->remove($this->table,get("ma"));
+        }
+    }
+    
+    function suplier_show() {
+        if (isset($_GET['ma']) && get('ma')) {
+            $this->model->show($this->table,get("ma"));
+        } 
+    }
+
+    function suplier_hidden() {
+        if (isset($_GET['ma']) && get('ma')) {
+            $this->model->hidden($this->table,get("ma"));
+        } 
+    }
 }

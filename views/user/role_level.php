@@ -19,7 +19,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            <form action="" method="post">
+            <form  action="" method="post">
                 <ul>
                     <?php
                     foreach ($get_dynamic as $dynamic) {
@@ -28,7 +28,7 @@
                     <li><input type="checkbox" <?= $this->role->checked($get_user->ma, $dynamic->ma) ? "checked" : "" ?>
                             value="<?= $dynamic->ma ?>" name="chucnang[]">
                         <i class="<?= $dynamic->icon ?>"></i> <?= $dynamic->ten ?>
-                        <ul>
+                        <ul id="role_level">
                             <?php
                                 foreach ($get_dynamic_con as $dynamic_con) {
                                 ?>

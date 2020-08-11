@@ -23,7 +23,7 @@ class productscontroller extends productsMiddleware
         $msg = "";
         $post = $this->middleware_add($_POST,$msg,$_FILES['hinh'], $_FILES['hinhchitiet']);
         if ($post) {
-            $this->model->add($post);
+            $this->model->add($this->table,$post);
             chuyentrang(url($this->table, "index"));
         } 
         
@@ -41,7 +41,7 @@ class productscontroller extends productsMiddleware
         $msg = "";
         $post = $this->middleware_repair($_POST,$msg,get('ma'),$_FILES['hinh'], $_FILES['hinhchitiet']);
         if ($post) {
-            $this->model->repair($post, get("ma"));
+            $this->model->repair($this->table,$post, get("ma"));
             chuyentrang(url($this->table, "index"));
         }
 

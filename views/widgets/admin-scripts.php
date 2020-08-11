@@ -37,4 +37,31 @@
  <script src="<?= TEMPLATE ?>vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
  <!-- Custom Theme Scripts -->
- <script src="<?= TEMPLATE ?>build/js/custom.min.js"></script>s
+ <script src="<?= TEMPLATE ?>build/js/custom.min.js"></script>
+
+ <script>
+    $(document).ready(function(){
+        $("#role_level li").click(function(){
+            console.log($(this).parent('li'));
+            $(this).each(function(){
+                if ($(this).children('input').attr('checked','')) {
+                    $(this).parent('ul').siblings('input').prop('checked',false);
+                } 
+            });
+            $(this).parent('ul').siblings('input').prop('checked',true);
+        });
+    });
+
+    $("#bidanh").val('Danh mục cha');
+    $("#danhmuc").click(function(){
+        $("#danhmuc option").each(function(){
+            if ($(this).prop("selected") == true) {
+                $("#bidanh").val('Danh mục con');
+            } 
+            if ($(this).val() == 0) {
+            $("#bidanh").val('Danh mục cha');
+            } 
+        });
+    });
+
+ </script>

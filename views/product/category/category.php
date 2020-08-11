@@ -1,7 +1,7 @@
 <div class="col-md-12 col-sm-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Danh sách nhà cung cấp</h2>
+            <h2>Danh sách các danh mục</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -19,15 +19,15 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            <a class='btn btn-primary btn-sm' href="<?= url("suplier", "suplier_add") ?>">Thêm mới</a>
+            <a class='btn btn-primary btn-sm' href="<?= url("category", "category_add") ?>">Thêm danh mục</a>
             <table class="table">
                 <thead>
                     <tr>
                         <th>Mã</th>
-                        <th>Tên</th>
-                        <th>Địa chỉ</th>
-                        <th>Email</th>
-                        <th>Số điện thoại</th>
+                        <th class="text-center">Tên</th>
+                        <th class="text-center">Hình</th>
+                        <th>Mô tả</th>
+                        <th>Bí danh</th>
                         <th class="text-center">Trạng thái</th>
                         <th class='text-center'>Tùy chỉnh</th>
                     </tr>
@@ -38,19 +38,19 @@
                     ?>
                     <tr>
                         <td><?= $item->ma ?></td>
-                        <td><?= $item->ten ?></td>
-                        <td><?= $item->diachi ?></td>
-                        <td><?= $item->email ?></td>
-                        <td><?= $item->sdt ?></td>
+                        <td class="text-center"><?= $item->ten ?></td>
+                        <td class="text-center"><img width="auto" height="50px" src="<?= $item->hinh ?>" alt=""> </td>
+                        <td><?= $item->mota ?></td>
+                        <td><?= $item->alias == "Danh mục cha" ? "Danh mục cha" : "Danh mục con" ?></td>
                         <td class="text-center">
                             <?php
                                 if ($item->trangthai == 1) {
                                 ?>
-                            <a style="font-size: 20px;" href="<?= url("suplier", "suplier_hidden", ["ma" => $item->ma]) ?>" class="badge badge-success"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
+                            <a style="font-size: 20px;" href="<?= url("category", "category_hidden", ["ma" => $item->ma]) ?>" class="badge badge-success"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>
                             <?php
                                 } else {
                                 ?>
-                            <a style="font-size: 20px;" href="<?= url("suplier", "suplier_show", ["ma" => $item->ma]) ?>" class="badge badge-secondary"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
+                            <a style="font-size: 20px;" href="<?= url("category", "category_show", ["ma" => $item->ma]) ?>" class="badge badge-secondary"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
                             <?php
                                 }
                                 ?>
@@ -58,9 +58,9 @@
                         <td class='text-right'>
                             <!-- <a class='btn btn-primary btn-sm' href="">Xem</a> -->
                             <a onclick="return confirm('bạn có chắc xóa không??')" class='btn btn-danger btn-sm'
-                                href="<?= url("suplier", "suplier_remove", ["ma" => $item->ma]) ?>">Xóa</a>
+                                href="<?= url("category", "category_remove", ["ma" => $item->ma]) ?>">Xóa</a>
                             <a class='btn btn-success btn-sm'
-                                href="<?= url("suplier", "suplier_repair", ["ma" => $item->ma]) ?>">Sửa</a>
+                                href="<?= url("category", "category_repair", ["ma" => $item->ma]) ?>">Sửa</a>
                         </td>
                     </tr>
                     <?php
